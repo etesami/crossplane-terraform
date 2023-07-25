@@ -59,7 +59,7 @@ variable "openstack_project_domain_name" {
   type = string
 }
 
-varable "vm_name" {
+variable "vm_name" {
   type = string
 } 
 
