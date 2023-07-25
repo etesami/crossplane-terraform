@@ -1,30 +1,30 @@
-# variable "openstack_auth_url" {
-#   type = string
-# }
+variable "auth_url" {
+  type = string
+}
 
-# variable "openstack_tenant_name" {
-#   type = string
-# }
+variable "tenant_name" {
+  type = string
+}
 
-# variable "openstack_user_name" {
-#   type = string
-# }
+variable "user_name" {
+  type = string
+}
 
-# variable "openstack_password" {
-#   type = string
-# }
+variable "password" {
+  type = string
+}
 
-# variable "openstack_region" {
-#   type = string
-# }
+variable "region" {
+  type = string
+}
 
-# variable "openstack_user_domain_name" {
-#   type = string
-# }
+variable "user_domain_name" {
+  type = string
+}
 
-# variable "openstack_project_domain_name" {
-#   type = string
-# }
+variable "project_domain_name" {
+  type = string
+}
 
 variable "vm_name" {
   type = string
