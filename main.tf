@@ -1,21 +1,21 @@
-# terraform {
-#   required_providers {
-#     openstack = {
-#       source = "terraform-provider-openstack/openstack"
-#     }
-#   }
-#   required_version = ">= 0.13.1"
-# }
-
-provider "openstack" {
-  auth_url            = var.openstack_auth_url
-  tenant_name         = var.openstack_tenant_name
-  user_name           = var.openstack_user_name
-  password            = var.openstack_password
-  region              = var.openstack_region
-  user_domain_name    = var.openstack_user_domain_name
-  project_domain_name = var.openstack_project_domain_name
+terraform {
+  required_providers {
+    openstack = {
+      source = "terraform-provider-openstack/openstack"
+    }
+  }
+  required_version = ">= 0.13.1"
 }
+
+# provider "openstack" {
+#   auth_url            = var.openstack_auth_url
+#   tenant_name         = var.openstack_tenant_name
+#   user_name           = var.openstack_user_name
+#   password            = var.openstack_password
+#   region              = var.openstack_region
+#   user_domain_name    = var.openstack_user_domain_name
+#   project_domain_name = var.openstack_project_domain_name
+# }
 
 resource "openstack_compute_instance_v2" "my_instance" {
   name            = var.vm_name
