@@ -30,10 +30,6 @@ variable "vm_name" {
   type = string
 } 
 
-variable "region" {
-  type = string
-}
-
 variable "image_id" {
   type = string
 }
