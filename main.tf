@@ -13,10 +13,10 @@
 
 # }
 
-module "keypair" {
-  source = "./modules/keypair"
-}
-
-# modul "openstack_compute_keypair_v2" "key" {
-#   name       = "test-key"
+# module "keypair" {
+#   source = "./modules/keypair"
 # }
+
+modul "openstack_compute_keypair_v2" "key" {
+  name       = "test-key"
+}
