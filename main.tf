@@ -45,21 +45,21 @@
   # remote_rke2_yaml = "${var.system_user}@${module.server.floating_ip[0]}:/etc/rancher/rke2/rke2-remote.yaml"
 # }
 
-module "keypair" {
-  source           = "./modules/keypair"
-  cluster_name     = var.cluster_name
-}
+# module "keypair" {
+#   source           = "./modules/keypair"
+#   cluster_name     = var.cluster_name
+# }
 
 module "network" {
   source              = "./modules/network"
   cluster_name        = var.cluster_name
   create_network      = var.create_network
   network_name        = var.network_name
+  subnet_name         = var.subnet_name
   public_net_name     = var.public_net_name
   network_cidr        = var.network_cidr
   network_gateway_ip  = var.network_gateway_ip
   router_id           = var.router_id
-  # subnet_name     = var.subnet_name
   # router_name     = "${var.cluster_name}-router"
   # dns_servers     = var.dns_servers
   # dns_domain      = var.dns_domain
