@@ -4,4 +4,5 @@ output "keypair_name" {
 
 output "keypair_private_key" {
   value = module.keypair.keypair_private_key
+  sensitive = true
 }
