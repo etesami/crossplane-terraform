@@ -45,9 +45,9 @@
   # remote_rke2_yaml = "${var.system_user}@${module.server.floating_ip[0]}:/etc/rancher/rke2/rke2-remote.yaml"
 # }
 
-# module "keypair" {
-#   source           = "./modules/keypair"
-# }
+module "keypair" {
+  source           = "./modules/keypair"
+}
 
 module "network" {
   source              = "./modules/network"
