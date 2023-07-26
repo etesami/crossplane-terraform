@@ -53,6 +53,7 @@ module "keypair" {
 module "network" {
   source              = "./modules/network"
   cluster_name        = var.cluster_name
+  create_network      = var.create_network
   network_name        = var.network_name
   public_net_name     = var.public_net_name
   network_cidr        = var.network_cidr

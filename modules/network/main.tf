@@ -1,12 +1,12 @@
 resource "openstack_networking_network_v2" "nodes_net" {
-  count                 = var.network_name == null ? 1 : 0
-  name                  = "${var.cluster_name}-net"
+  count                 = var.create_network ? 1 : 0
+  name                  = var.network_name
   admin_state_up        = "true"
 }
 
 resource "openstack_networking_subnet_v2" "nodes_subnet" {
-  count           = var.network_name == null ? 1 : 0
-  name            = "${var.cluster_name}-subnet"
+  count           = var.create_network ? 1 : 0
+  name            = var.subnet_name
   network_id      = openstack_networking_network_v2.nodes_net[0].id
   cidr            = var.network_cidr
   ip_version      = 4
@@ -15,7 +15,7 @@ resource "openstack_networking_subnet_v2" "nodes_subnet" {
 }
 
 resource "openstack_networking_router_interface_v2" "router_interface" {
-  count     = var.network_name == null ? 1 : 0
+  count     = var.create_network ? 1 : 0
   router_id = var.router_id
   subnet_id = openstack_networking_subnet_v2.nodes_subnet[0].id
 }

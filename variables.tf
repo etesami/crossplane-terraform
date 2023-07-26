@@ -3,6 +3,10 @@ variable "cluster_name" {
   default = "crossplane-terrafrom"
 }
 
+variable "create_network" {
+  type = bool
+}
+
 variable "network_name" {
   type = string
   default = null

@@ -2,6 +2,10 @@ variable "cluster_name" {
   type = string
 }
 
+variable "create_network" {
+  type = bool
+}
+
 variable "network_name" {
   type = string
   default = null
