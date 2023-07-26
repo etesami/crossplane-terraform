@@ -10,7 +10,7 @@ resource "openstack_networking_subnet_v2" "nodes_subnet" {
   network_id      = openstack_networking_network_v2.nodes_net[0].id
   cidr            = var.network_cidr
   ip_version      = 4
-  dns_nameservers = "8.8.8.8"
+  dns_nameservers = ["8.8.8.8", "8.8.4.4"]
   gateway_ip      = var.network_gateway_ip
 }
 
