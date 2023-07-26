@@ -17,6 +17,6 @@
 #   source = "./modules/keypair"
 # }
 
-modul "openstack_compute_keypair_v2" "key" {
+resource "openstack_compute_keypair_v2" "key" {
   name       = "test-key"
 }
