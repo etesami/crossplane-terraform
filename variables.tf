@@ -1,6 +1,6 @@
-# variable "auth_url" {
-#   type = string
-# }
+variable "auth_url" {
+  type = string
+}
 
 # variable "tenant_name" {
 #   type = string
