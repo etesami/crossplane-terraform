@@ -87,7 +87,7 @@ variable "nodes_count" {
 
 variable "flavor_name" {
   type        = string
-  description = "p3.large"
+  default     = "p3.large"
 }
 
 # variable "server_group_affinity" {
