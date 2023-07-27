@@ -37,6 +37,17 @@ variable "public_net_name" {
   default = null
 }
 
+variable "secgroup_rules" {
+  type = list(any)
+  default = [
+    { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 22 },
+    { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 6443 },
+    { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 80 },
+    { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 443 }
+  ]
+  description = "Security group rules"
+}
+
 variable "auth_url" {
   type = string
 }

@@ -60,16 +60,12 @@ module "network" {
   network_cidr        = var.network_cidr
   network_gateway_ip  = var.network_gateway_ip
   router_id           = var.router_id
-  # router_name     = "${var.cluster_name}-router"
-  # dns_servers     = var.dns_servers
-  # dns_domain      = var.dns_domain
 }
 
-# module "secgroup" {
-#   source      = "./modules/secgroup"
-#   name_prefix = var.cluster_name
-#   rules       = var.secgroup_rules
-# }
+module "secgroup" {
+  source      = "./modules/secgroup"
+  rules       = var.secgroup_rules
+}
 
 # module "server" {
 #   source                 = "./modules/node"
