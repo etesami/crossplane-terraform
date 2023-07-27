@@ -62,11 +62,45 @@ module "network" {
   router_id           = var.router_id
 }
 
-module "secgroup" {
-  source      = "./modules/secgroup"
-  create_secgroup = var.create_secgroup
-  rules       = var.secgroup_rules
-}
+# module "secgroup" {
+#   source      = "./modules/secgroup"
+#   create_secgroup = var.create_secgroup
+#   rules       = var.secgroup_rules
+# }
+
+# module "server" {
+#   source                 = "./modules/node"
+#   cluster_name           = var.cluster_name
+#   nodes_count            = var.nodes_count
+#   image_name             = var.image_name
+#   image_id               = var.image_id
+#   flavor_name            = var.flavor_name
+#   keypair_name           = var.keypair_name != null ? var.keypair_name : module.keypair.keypair_name
+#   network_id             = var.network_name != null ? var.network_name : module.network.network_name
+#   subnet_id              = var.subnet_name != null ? var.subnet_name : module.network.nodes_subnet_id
+#   secgroup_id            = module.secgroup.secgroup_id
+#   server_affinity        = var.server_group_affinity
+#   assign_floating_ip     = "true"
+#   config_drive           = var.nodes_config_drive
+#   floating_ip_pool       = var.public_net_name
+#   user_data              = var.user_data_file != null ? file(var.user_data_file) : null
+#   boot_from_volume       = var.boot_from_volume
+#   boot_volume_size       = var.boot_volume_size
+#   boot_volume_type       = var.boot_volume_type
+#   availability_zones     = var.availability_zones
+#   rke2_version           = var.rke2_version
+#   rke2_config            = var.rke2_config
+#   containerd_config_file = var.containerd_config_file
+#   registries_conf        = var.registries_conf
+#   rke2_token             = random_string.rke2_token.result
+#   additional_san         = var.additional_san
+#   manifests_path         = var.manifests_path
+#   manifests_gzb64        = var.manifests_gzb64
+#   do_upgrade             = var.do_upgrade
+#   proxy_url              = var.proxy_url
+#   no_proxy               = concat(["localhost", "127.0.0.1", "169.254.169.254", "127.0.0.0/8", "169.254.0.0/16", "10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"], var.no_proxy)
+# }
+
 
 # module "server" {
 #   source                 = "./modules/node"

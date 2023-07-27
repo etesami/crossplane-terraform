@@ -18,7 +18,7 @@ resource "openstack_networking_router_v2" "router" {
   count                = var.create_network ? 1 : 0
   name                = "${var.cluster_name}-router"
   admin_state_up      = true
-  external_network_id = data.openstack_networking_network_v2.public_net[0].id
+  external_network_id = data.openstack_networking_network_v2.public_net.id
 }
 
 resource "openstack_networking_router_interface_v2" "router_interface" {
@@ -28,6 +28,13 @@ resource "openstack_networking_router_interface_v2" "router_interface" {
 }
 
 data "openstack_networking_network_v2" "public_net" {
-  count = var.create_network ? 1 : 0
   name  = var.public_net_name
+}
+
+data "openstack_networking_subnet_v2" "existing_subnet_id" {
+  name            = var.subnet_name
+}
+
+data "openstack_networking_network_v2" "existing_net_id" {
+  name            = var.network_name
 }

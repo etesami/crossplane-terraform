@@ -3,6 +3,8 @@ variable "cluster_name" {
   default = "crossplane-terrafrom"
 }
 
+# ##############################################
+
 variable "create_network" {
   type = bool
 }
@@ -51,6 +53,109 @@ variable "secgroup_rules" {
   ]
   description = "Security group rules"
 }
+
+# ##############################################
+
+variable "write_kubeconfig" {
+  type        = bool
+  default     = "false"
+  description = "Write kubeconfig file to disk"
+}
+
+variable "output_kubernetes_config" {
+  type        = bool
+  default     = "false"
+  description = "Output Kubernetes config to state (for use with Kubernetes provider)"
+}
+
+# ##############################################
+
+variable "image_id" {
+  type        = string
+  default     = "0be9b209-5e60-432d-8318-65ffd3043bd0"
+}
+
+variable "image_name" {
+  type        = string
+  default     = "Ubuntu-20-04-focal"
+}
+
+variable "nodes_count" {
+  type        = number
+  default     = 1
+}
+
+variable "flavor_name" {
+  type        = string
+  description = "p3.large"
+}
+
+# variable "server_group_affinity" {
+#   type        = string
+#   default     = "soft-anti-affinity"
+#   description = "Server group affinity"
+# }
+
+variable "user_data_file" {
+  type        = string
+  default     = null
+}
+
+# variable "availability_zones" {
+#   type        = list(string)
+#   default     = []
+#   description = "The list of AZs to deploy nodes into"
+# }
+
+variable "rke2_version" {
+  type        = string
+  default     = ""
+  description = "RKE2 version"
+}
+
+variable "rke2_config" {
+  type        = string
+  default     = ""
+  description = "RKE2 config contents"
+}
+
+# variable "containerd_config_file" {
+#   type        = string
+#   default     = ""
+#   description = "containerd config file for servers"
+# }
+
+# variable "registries_conf" {
+#   type        = string
+#   default     = ""
+#   description = "Containerd registries config in gz+b64"
+# }
+
+# variable "additional_san" {
+#   type        = list(string)
+#   default     = []
+#   description = "RKE2 additional SAN"
+# }
+
+# variable "manifests_path" {
+#   type        = string
+#   default     = ""
+#   description = "RKE2 addons manifests directory"
+# }
+
+# variable "manifests_gzb64" {
+#   type        = map(string)
+#   default     = {}
+#   description = "RKE2 addons manifests in gz+b64 in the form { \"addon_name\": \"gzb64_manifests\" }"
+# }
+
+# variable "do_upgrade" {
+#   type        = bool
+#   default     = false
+#   description = "Trigger upgrade provisioner"
+# }
+
+# ##############################################
 
 variable "auth_url" {
   type = string
