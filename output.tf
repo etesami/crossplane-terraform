@@ -27,6 +27,6 @@ output "router_id" {
   value = module.network.router_id
 }
 
-output "secgroup_id" {
-  value = module.secgroup.secgroup_id
-}
+# output "secgroup_id" {
+#   value = module.secgroup.secgroup_id
+# }
