@@ -64,6 +64,7 @@ module "network" {
 
 module "secgroup" {
   source      = "./modules/secgroup"
+  create_secgroup = var.create_secgroup
   rules       = var.secgroup_rules
 }
 

@@ -3,6 +3,10 @@ variable "cluster_name" {
   default = "crossplane-terrafrom"
 }
 
+variable "create_secgroup" {
+  type = bool
+}
+
 variable "rules" {
   type = list(any)
 }

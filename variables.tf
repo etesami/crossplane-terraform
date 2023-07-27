@@ -7,6 +7,10 @@ variable "create_network" {
   type = bool
 }
 
+variable "create_secgroup" {
+  type = bool
+}
+
 variable "network_name" {
   type = string
   default = null
