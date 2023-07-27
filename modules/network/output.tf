@@ -11,7 +11,7 @@ output "network_id" {
 
 output "subnet_id" {
   value = try(
-    openstack_networking_network_v2.nodes_subnet[0].id, 
+    openstack_networking_subnet_v2.nodes_subnet[0].id, 
     data.openstack_networking_subnet_v2.existing_subnet_id.id
   )
 }
