@@ -22,5 +22,5 @@ resource "openstack_networking_secgroup_rule_v2" "rules" {
   port_range_min    = each.value.port
   port_range_max    = each.value.port
   remote_ip_prefix  = each.value.source
-  security_group_id = openstack_networking_secgroup_v2.secgroup.id
+  security_group_id = openstack_networking_secgroup_v2.secgroup[0].id
 }
