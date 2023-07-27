@@ -14,19 +14,15 @@ resource "openstack_networking_subnet_v2" "nodes_subnet" {
   dns_nameservers = ["8.8.8.8", "8.8.4.4"]
 }
 
-resource "openstack_networking_router_interface_v2" "router_interface" {
-  count     = var.create_network ? 1 : 0
-  router_id = var.router_id
-  subnet_id = openstack_networking_subnet_v2.nodes_subnet[0].id
+resource "openstack_networking_router_v2" "router" {
+  count           = var.create_network ? 1 : 0
+  name                = "${var.cluster_name}-router"
+  admin_state_up      = true
+  external_network_id = data.openstack_networking_network_v2.public_net.id
 }
 
-
-# data "openstack_networking_network_v2" "public_net" {
-#   name = var.public_net_name
-# }
-
-# resource "openstack_networking_router_v2" "router" {
-#   name                = var.router_name
-#   admin_state_up      = true
-#   external_network_id = data.openstack_networking_network_v2.public_net.id
-# }
+resource "openstack_networking_router_interface_v2" "router_interface" {
+  count     = var.create_network ? 1 : 0
+  router_id = openstack_networking_router_v2.router[0].id
+  subnet_id = openstack_networking_subnet_v2.nodes_subnet[0].id
+}

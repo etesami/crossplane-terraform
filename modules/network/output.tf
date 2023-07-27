@@ -5,3 +5,7 @@ output "network_name" {
 output "subnet_name" {
   value = try(openstack_networking_subnet_v2.nodes_subnet[0].name, var.subnet_name)
 }
+
+output "router_id" {
+  value = try(openstack_networking_router_v2.router[0].id, null)
+}

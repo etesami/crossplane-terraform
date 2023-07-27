@@ -14,3 +14,7 @@ output "network_name" {
 output "subnet_name" {
   value = module.network.subnet_name
 }
+
+output "router_id" {
+  value = module.network.router_id
+}
