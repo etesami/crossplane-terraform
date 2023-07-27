@@ -6,12 +6,12 @@ variable "create_network" {
   type = bool
 }
 
-variable "network_name" {
+variable "existing_network_name" {
   type = string
   default = null
 }
 
-variable "subnet_name" {
+variable "existing_subnet_name" {
   type = string
   default = null
 }

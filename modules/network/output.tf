@@ -1,5 +1,5 @@
 output "network_name" {
-  value = try(openstack_networking_network_v2.nodes_net[0].name, var.network_name)
+  value = try(openstack_networking_network_v2.nodes_net[0].name, var.existing_network_name)
 }
 
 output "network_id" {
@@ -17,9 +17,13 @@ output "subnet_id" {
 }
 
 output "subnet_name" {
-  value = try(openstack_networking_subnet_v2.nodes_subnet[0].name, var.subnet_name)
+  value = try(openstack_networking_subnet_v2.nodes_subnet[0].name, var.existing_subnet_name)
 }
 
 output "router_id" {
   value = try(openstack_networking_router_v2.router[0].id, null)
+}
+
+output "router_name" {
+  value = try(openstack_networking_router_v2.router[0].name, null)
 }

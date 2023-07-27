@@ -1,12 +1,12 @@
 resource "openstack_networking_network_v2" "nodes_net" {
   count                 = var.create_network ? 1 : 0
-  name                  = var.network_name != null ? var.network_name : "${var.cluster_name}-net"
+  name                  = "${var.cluster_name}-net"
   admin_state_up        = "true"
 }
 
 resource "openstack_networking_subnet_v2" "nodes_subnet" {
   count           = var.create_network ? 1 : 0
-  name            = var.subnet_name != null ? var.subnet_name : "${var.cluster_name}-subnet"
+  name            = "${var.cluster_name}-subnet"
   network_id      = openstack_networking_network_v2.nodes_net[0].id
   cidr            = var.network_cidr != null ? var.network_cidr : "10.30.199.0/24"
   gateway_ip      = var.network_gateway_ip != null ? var.network_gateway_ip : "10.30.199.1"
@@ -15,7 +15,7 @@ resource "openstack_networking_subnet_v2" "nodes_subnet" {
 }
 
 resource "openstack_networking_router_v2" "router" {
-  count                = var.create_network ? 1 : 0
+  count               = var.create_network ? 1 : 0
   name                = "${var.cluster_name}-router"
   admin_state_up      = true
   external_network_id = data.openstack_networking_network_v2.public_net.id
@@ -31,10 +31,12 @@ data "openstack_networking_network_v2" "public_net" {
   name  = var.public_net_name
 }
 
+# If the network is provided by the user, we need to get the ID 
+# of the subnet and network
 data "openstack_networking_subnet_v2" "existing_subnet_id" {
-  name            = var.subnet_name
+  name  = var.existing_subnet_name
 }
 
 data "openstack_networking_network_v2" "existing_net_id" {
-  name            = var.network_name
+  name  = var.existing_network_name
 }
