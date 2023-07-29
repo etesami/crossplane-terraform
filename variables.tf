@@ -1,6 +1,6 @@
 variable "cluster_name" {
   type = string
-  default = "crossplane-terrafrom"
+  default = "cptf"
 }
 
 # ##############################################
@@ -13,12 +13,12 @@ variable "create_secgroup" {
   type = bool
 }
 
-variable "network_name" {
+variable "existing_network_name" {
   type = string
   default = null
 }
 
-variable "subnet_name" {
+variable "existing_subnet_name" {
   type = string
   default = null
 }
@@ -70,6 +70,16 @@ variable "output_kubernetes_config" {
 
 # ##############################################
 
+variable "existing_public_key" {
+  type        = string
+  default     = ""
+}
+
+variable "keypair_name" {
+  type        = string
+  default     = ""
+}
+
 variable "image_id" {
   type        = string
   default     = "0be9b209-5e60-432d-8318-65ffd3043bd0"
@@ -96,10 +106,10 @@ variable "flavor_name" {
 #   description = "Server group affinity"
 # }
 
-variable "user_data_file" {
-  type        = string
-  default     = null
-}
+# variable "user_data_file" {
+#   type        = string
+#   default     = null
+# }
 
 # variable "availability_zones" {
 #   type        = list(string)
@@ -131,23 +141,23 @@ variable "rke2_config" {
 #   description = "Containerd registries config in gz+b64"
 # }
 
-# variable "additional_san" {
-#   type        = list(string)
-#   default     = []
-#   description = "RKE2 additional SAN"
-# }
+variable "additional_san" {
+  type        = list(string)
+  default     = []
+  description = "RKE2 additional SAN"
+}
 
-# variable "manifests_path" {
-#   type        = string
-#   default     = ""
-#   description = "RKE2 addons manifests directory"
-# }
+variable "manifests_path" {
+  type        = string
+  default     = ""
+  description = "RKE2 addons manifests directory"
+}
 
-# variable "manifests_gzb64" {
-#   type        = map(string)
-#   default     = {}
-#   description = "RKE2 addons manifests in gz+b64 in the form { \"addon_name\": \"gzb64_manifests\" }"
-# }
+variable "manifests_gzb64" {
+  type        = map(string)
+  default     = {}
+  description = "RKE2 addons manifests in gz+b64 in the form { \"addon_name\": \"gzb64_manifests\" }"
+}
 
 # variable "do_upgrade" {
 #   type        = bool

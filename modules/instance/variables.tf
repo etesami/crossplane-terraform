@@ -79,9 +79,9 @@ variable "floating_ip_pool" {
   type = string
 }
 
-variable "user_data" {
-  type = string
-}
+# variable "user_data" {
+#   type = string
+# }
 
 # variable "boot_from_volume" {
 #   type = bool
@@ -136,22 +136,22 @@ variable "rke2_token" {
   default = ""
 }
 
-# variable "additional_san" {
-#   type        = list(string)
-#   default     = []
-#   description = "RKE additional SAN"
-# }
+variable "additional_san" {
+  type        = list(string)
+  default     = []
+  description = "RKE additional SAN"
+}
 
-# variable "manifests_path" {
-#   type        = string
-#   default     = ""
-#   description = "RKE2 addons manifests directory"
-# }
+variable "manifests_path" {
+  type        = string
+  default     = ""
+  description = "RKE2 addons manifests directory"
+}
 
-# variable "manifests_gzb64" {
-#   type    = map(string)
-#   default = {}
-# }
+variable "manifests_gzb64" {
+  type    = map(string)
+  default = {}
+}
 
 # variable "do_upgrade" {
 #   type = bool

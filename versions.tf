@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    openstack = {
+      source = "terraform-provider-openstack/openstack"
+    }
+  }
+  required_version = ">= 0.13.1"
+}
+
 provider "openstack" {
   auth_url           = var.auth_url
   tenant_name        = var.tenant_name
