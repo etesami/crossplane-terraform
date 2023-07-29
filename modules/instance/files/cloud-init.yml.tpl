@@ -26,7 +26,7 @@ write_files:
       RKE2_ROLE=$(curl -s http://169.254.169.254/openstack/2012-08-10/meta_data.json|jq -r '.meta.rke2_role')
       RKE2_SERVICE="rke2-$RKE2_ROLE.service"
       echo "Will install RKE2 $INSTALL_RKE2_VERSION with $RKE2_ROLE role"
-      curl -sfL https://get.rke2.io | sh -
+      curl -sfL https://get.rke2.io | INSTALL_RKE2_TYPE="$RKE2_ROLE" sh -
     fi
 %{ if bootstrap_server == "" ~}
   %{~ for f in manifests_files ~}
@@ -45,8 +45,8 @@ write_files:
     %{~ if bootstrap_server != "" ~}
     server: https://${bootstrap_server}:9345
     %{~ endif ~}
-    %{~ if is_server ~}
 
+    %{~ if is_server ~}
     write-kubeconfig-mode: "0640"
     tls-san:
       ${indent(6, yamlencode(concat(san, additional_san)))}
@@ -67,6 +67,8 @@ runcmd:
   - sudo chgrp ${system_user} /etc/rancher/rke2/rke2-remote.yaml
   - KUBECONFIG=/etc/rancher/rke2/rke2-remote.yaml /var/lib/rancher/rke2/bin/kubectl config set-cluster default --server https://${public_address}:6443
   - KUBECONFIG=/etc/rancher/rke2/rke2-remote.yaml /var/lib/rancher/rke2/bin/kubectl config rename-context default ${cluster_name}
+  - echo "export PATH=$PATH:/var/lib/rancher/rke2/bin" >> /home/ubuntu/.bashrc
+  - echo "export KUBECONFIG=/etc/rancher/rke2/rke2-remote.yaml" >> /home/ubuntu/.bashrc
   %{~ else ~}
   - systemctl enable rke2-agent.service
   - systemctl start rke2-agent.service

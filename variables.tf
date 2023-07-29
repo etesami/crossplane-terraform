@@ -95,9 +95,19 @@ variable "nodes_count" {
   default     = 1
 }
 
+variable "agents_count" {
+  type        = number
+  default     = 1
+}
+
 variable "flavor_name" {
   type        = string
   default     = "p3.large"
+}
+
+variable "ssh_private_key" {
+  type        = string
+  default     = ""
 }
 
 # variable "server_group_affinity" {
@@ -200,27 +210,3 @@ variable "user_domain_name" {
 variable "project_domain_name" {
   type = string
 }
-
-# variable "vm_name" {
-#   type = string
-# } 
-
-# variable "image_id" {
-#   type = string
-# }
-
-# variable "flavor_id" {
-#   type = string
-# }
-
-# variable "key_name" {
-#   type = string
-# }
-
-# variable "security_groups" {
-#   type = list(string)
-# }
-
-# variable "network_name" {
-#   type = string
-# }

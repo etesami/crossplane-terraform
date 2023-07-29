@@ -1,16 +1,11 @@
-# locals {
-#   tmpdir = "${path.root}/.terraform/tmp/rke2"
-# }
-
 data "openstack_images_image_v2" "image" {
   name        = var.image_name
   most_recent = true
 }
 
 resource "openstack_compute_instance_v2" "instance" {
-  # depends_on   = [var.node_depends_on]
   count        = var.nodes_count
-  name         = "${var.cluster_name}-${format("%03d", count.index + 1)}"
+  name         = "${var.cluster_name}-${var.name_prefix}-${format("%03d", count.index + 1)}"
   image_name   = var.image_name
   flavor_name  = var.flavor_name
   key_pair     = var.keypair_name
@@ -25,11 +20,6 @@ resource "openstack_compute_instance_v2" "instance" {
       manifests_files  = var.manifests_path != "" ? [for f in fileset(var.manifests_path, "*.{yml,yaml}") : [f, base64gzip(file("${var.manifests_path}/${f}"))]] : []
       additional_san   = var.additional_san
       system_user      = var.system_user
-      # manifests_gzb64  = var.manifests_gzb64
-      # containerd_conf  = var.containerd_config_file
-      # registries_conf  = var.registries_conf
-      # proxy_url        = var.proxy_url
-      # no_proxy         = var.no_proxy
   }))
   metadata = {
     rke2_version = var.rke2_version
@@ -40,7 +30,6 @@ resource "openstack_compute_instance_v2" "instance" {
     port = openstack_networking_port_v2.port[count.index].id
   }
 
-  # tags = var.instance_tags
 }
 
 resource "openstack_networking_port_v2" "port" {
@@ -63,36 +52,3 @@ resource "openstack_compute_floatingip_associate_v2" "associate_floating_ip" {
   floating_ip = openstack_networking_floatingip_v2.floating_ip[count.index].address
   instance_id = openstack_compute_instance_v2.instance[count.index].id
 }
-
-# resource "null_resource" "upgrade" {
-#   count = var.do_upgrade ? var.nodes_count : 0
-
-#   triggers = {
-#     rke_version = var.rke2_version
-#   }
-
-#   connection {
-#     bastion_host = var.assign_floating_ip ? "" : var.bastion_host
-#     host         = var.assign_floating_ip ? openstack_networking_floatingip_v2.floating_ip[count.index].address : openstack_compute_instance_v2.instance[0].access_ip_v4
-#     user         = var.system_user
-#     private_key  = var.use_ssh_agent ? null : file(var.ssh_key_file)
-#     agent        = var.use_ssh_agent
-#   }
-
-#   provisioner "local-exec" {
-#     command = count.index == 0 ? "true" : "until [ -f ${local.tmpdir}/upgrade-${openstack_compute_instance_v2.instance[count.index - 1].id}-${var.rke2_version} ]; do sleep 10; done;"
-#   }
-
-#   provisioner "remote-exec" {
-#     inline = [
-#       "sudo /usr/local/bin/install-or-upgrade-rke2.sh",
-#       "sudo systemctl restart %{if var.is_server} rke2-server.service %{else} rke2-agent.service %{endif}",
-#       "/usr/local/bin/wait-for-node-ready.sh"
-#     ]
-#   }
-
-#   provisioner "local-exec" {
-#     command = "touch ${local.tmpdir}/upgrade-${openstack_compute_instance_v2.instance[count.index].id}-${var.rke2_version}"
-#   }
-
-# }

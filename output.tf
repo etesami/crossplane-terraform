@@ -39,10 +39,34 @@ output "secgroup_name" {
   value = module.secgroup.secgroup_name
 }
 
-output "instance_name" {
+output "server_name" {
   value = module.server.instance_name
 }
 
-output "instance_id" {
+output "server_id" {
   value = module.server.instance_id
+}
+
+output "server_ip" {
+  value = module.server.internal_ip
+}
+
+output "server_floating_ip" {
+  value = module.server.floating_ip
+}
+
+output "agent_name" {
+  value = module.agent_node.instance_name
+}
+
+output "agent_id" {
+  value = module.agent_node.instance_id
+}
+
+output "agent_ip" {
+  value = module.agent_node.internal_ip
+}
+
+output "agent_floating_ip" {
+  value = module.agent_node.floating_ip
 }

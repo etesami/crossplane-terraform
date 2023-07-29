@@ -1,10 +1,9 @@
-# variable "node_depends_on" {
-#   type    = any
-#   default = null
-# }
-
 variable "nodes_count" {
   type = number
+}
+
+variable "name_prefix" {
+  type = string
 }
 
 variable "cluster_name" {
@@ -19,11 +18,6 @@ variable "image_id" {
 variable "image_name" {
   type = string
 }
-
-# variable "instance_tags" {
-#   type    = list(string)
-#   default = []
-# }
 
 variable "flavor_name" {
   type = string
@@ -44,12 +38,6 @@ variable "system_user" {
   description = "Default OS image user"
 }
 
-# variable "use_ssh_agent" {
-#   type        = bool
-#   default     = true
-#   description = "Whether to use ssh agent"
-# }
-
 variable "network_id" {
   type = string
 }
@@ -57,14 +45,6 @@ variable "network_id" {
 variable "subnet_id" {
   type = string
 }
-
-# variable "config_drive" {
-#   type = bool
-# }
-
-# variable "server_affinity" {
-#   type = string
-# }
 
 variable "secgroup_id" {
   type = string
@@ -79,26 +59,6 @@ variable "floating_ip_pool" {
   type = string
 }
 
-# variable "user_data" {
-#   type = string
-# }
-
-# variable "boot_from_volume" {
-#   type = bool
-# }
-
-# variable "boot_volume_size" {
-#   type = number
-# }
-
-# variable "boot_volume_type" {
-#   type = string
-# }
-
-# variable "availability_zones" {
-#   type = list(string)
-# }
-
 variable "rke2_version" {
   type = string
 }
@@ -107,14 +67,6 @@ variable "rke2_config" {
   type    = string
   default = ""
 }
-
-# variable "containerd_config_file" {
-#   type = string
-# }
-
-# variable "registries_conf" {
-#   type = string
-# }
 
 variable "bootstrap_server" {
   type    = string
@@ -147,22 +99,3 @@ variable "manifests_path" {
   default     = ""
   description = "RKE2 addons manifests directory"
 }
-
-# variable "manifests_gzb64" {
-#   type    = map(string)
-#   default = {}
-# }
-
-# variable "do_upgrade" {
-#   type = bool
-# }
-
-# variable "proxy_url" {
-#   type    = string
-#   default = null
-# }
-
-# variable "no_proxy" {
-#   type    = list(string)
-#   default = []
-# }
