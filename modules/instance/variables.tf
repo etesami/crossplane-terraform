@@ -38,11 +38,11 @@ variable "public_key" {
   default     = ""
 }
 
-# variable "system_user" {
-#   type        = string
-#   default     = "ubuntu"
-#   description = "Default OS image user"
-# }
+variable "system_user" {
+  type        = string
+  default     = "ubuntu"
+  description = "Default OS image user"
+}
 
 # variable "use_ssh_agent" {
 #   type        = bool
@@ -148,10 +148,10 @@ variable "manifests_path" {
   description = "RKE2 addons manifests directory"
 }
 
-variable "manifests_gzb64" {
-  type    = map(string)
-  default = {}
-}
+# variable "manifests_gzb64" {
+#   type    = map(string)
+#   default = {}
+# }
 
 # variable "do_upgrade" {
 #   type = bool

@@ -153,11 +153,17 @@ variable "manifests_path" {
   description = "RKE2 addons manifests directory"
 }
 
-variable "manifests_gzb64" {
-  type        = map(string)
-  default     = {}
-  description = "RKE2 addons manifests in gz+b64 in the form { \"addon_name\": \"gzb64_manifests\" }"
+variable "system_user" {
+  type        = string
+  default     = "ubuntu"
+  description = "Default OS image user"
 }
+
+# variable "manifests_gzb64" {
+#   type        = map(string)
+#   default     = {}
+#   description = "RKE2 addons manifests in gz+b64 in the form { \"addon_name\": \"gzb64_manifests\" }"
+# }
 
 # variable "do_upgrade" {
 #   type        = bool

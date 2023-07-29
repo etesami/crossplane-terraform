@@ -97,7 +97,8 @@ module "server" {
   rke2_token             = random_string.rke2_token.result
   additional_san         = var.additional_san
   manifests_path         = var.manifests_path
-  manifests_gzb64        = var.manifests_gzb64
+  system_user            = var.system_user
+  # manifests_gzb64        = var.manifests_gzb64
   # user_data              = var.user_data_file != null ? file(var.user_data_file) : null
   # config_drive           = var.nodes_config_drive
   # server_affinity        = var.server_group_affinity
